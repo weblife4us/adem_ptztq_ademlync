@@ -32,36 +32,36 @@ flutter pub get
 3. **Device Layer** (`packages/ademlync_device/`) - протокол устройства
 4. **Cloud Layer** (`packages/ademlync_cloud/`) - облачное API
 
-### Ключевые Singleton'ы
+### Ключевые Singleton
 
 ```dart
-AdemManager()           // Управление устройством
-BluetoothConnectionManager()  // BLE соединение
-CloudManager()          // Облачные операции
-CacheManager()          // Кэш конфигурации
+AdemManager()                  // Управление устройством
+BluetoothConnectionManager()   // BLE соединение
+CloudManager()                 // Облачные операции
+CacheManager()                 // Кэш конфигурации
 ```
 
 ## Процесс подключения к устройству
 
 ```
 1. Сканирование BLE устройств
-   └── BluetoothConnectionManager.startDeviceScan()
+   BluetoothConnectionManager.startDeviceScan()
 
 2. Подключение к выбранному устройству
-   └── BluetoothConnectionManager.connect(device)
+   BluetoothConnectionManager.connect(device)
 
 3. Инициализация связи с AdEM
-   └── AdemManager.fetchAdem()
-       ├── wakeUp()      // Пробуждение
-       ├── connect()     // Авторизация
-       ├── read(...)     // Чтение параметров
-       └── disconnect()  // Завершение
+   AdemManager.fetchAdem()
+   +-- wakeUp()      // Пробуждение
+   +-- connect()     // Авторизация
+   +-- read(...)     // Чтение параметров
+   +-- disconnect()  // Завершение
 
 4. Работа с данными
-   └── read(), write(), readLogs()
+   read(), write(), readLogs()
 
 5. Отключение
-   └── BluetoothConnectionManager.disconnect()
+   BluetoothConnectionManager.disconnect()
 ```
 
 ## Тестирование
@@ -104,11 +104,13 @@ flutter test
 
 ## Важные файлы для изучения
 
-| Файл | Назначение |
-|------|------------|
-| `ademlync/lib/main.dart` | Точка входа |
-| `ademlync_device/lib/controllers/adem_manager.dart` | Логика устройства |
-| `ademlync_device/lib/controllers/communication_manager.dart` | BLE протокол |
-| `ademlync_cloud/lib/controllers/cloud_manager.dart` | Облачные операции |
-| `ademlync_device/lib/utils/constants.dart` | Все константы |
-| `ademlync_device/lib/utils/communication_enums.dart` | Протоколы и коды |
+```
+Файл                                         Назначение
+---------------------------------------------------------------------
+ademlync/lib/main.dart                       Точка входа
+ademlync_device/.../adem_manager.dart        Логика устройства
+ademlync_device/.../communication_manager.dart   BLE протокол
+ademlync_cloud/.../cloud_manager.dart        Облачные операции
+ademlync_device/lib/utils/constants.dart     Все константы
+ademlync_device/.../communication_enums.dart Протоколы и коды
+```

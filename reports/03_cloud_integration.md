@@ -13,41 +13,49 @@ Base Path: /production
 
 ### Аутентификация
 
-| Endpoint | Метод | Описание |
-|----------|-------|----------|
-| `/sign-in` | POST | Вход в систему |
-| `/user/forgot-password` | POST | Восстановление пароля |
-| `/user/confirm-forgot-password` | POST | Подтверждение сброса пароля |
+```
+Endpoint                       Метод    Описание
+-------------------------------------------------------
+/sign-in                       POST     Вход в систему
+/user/forgot-password          POST     Восстановление пароля
+/user/confirm-forgot-password  POST     Подтверждение сброса
+```
 
 ### MFA (Multi-Factor Authentication)
 
-| Endpoint | Метод | Описание |
-|----------|-------|----------|
-| `/get-mfa-status` | GET | Статус MFA |
-| `/enable-mfa` | POST | Включение MFA |
-| `/verify-mfa` | POST | Верификация MFA |
-| `/mfa-challenge` | POST | MFA челлендж |
-| `/discover-idp` | GET | Обнаружение IdP |
+```
+Endpoint         Метод    Описание
+-------------------------------------
+/get-mfa-status  GET      Статус MFA
+/enable-mfa      POST     Включение MFA
+/verify-mfa      POST     Верификация MFA
+/mfa-challenge   POST     MFA челлендж
+/discover-idp    GET      Обнаружение IdP
+```
 
 ### Управление пользователями
 
-| Endpoint | Метод | Описание |
-|----------|-------|----------|
-| `/user/create` | POST | Создание пользователя |
-| `/user/delete` | DELETE | Удаление пользователя |
-| `/user/modify` | PUT | Изменение пользователя |
-| `/user/list` | GET | Список пользователей |
-| `/user/groups` | GET | Группы пользователей |
+```
+Endpoint        Метод     Описание
+----------------------------------------
+/user/create    POST      Создание пользователя
+/user/delete    DELETE    Удаление пользователя
+/user/modify    PUT       Изменение пользователя
+/user/list      GET       Список пользователей
+/user/groups    GET       Группы пользователей
+```
 
 ### Работа с данными
 
-| Endpoint | Метод | Описание |
-|----------|-------|----------|
-| `/data/upload` | POST | Загрузка файла |
-| `/data/list-files` | GET | Список файлов |
-| `/data/list-folders` | GET | Список папок |
-| `/download-file` | GET | Скачивание файла |
-| `/data/bulk-download` | POST | Массовое скачивание |
+```
+Endpoint             Метод    Описание
+--------------------------------------------
+/data/upload         POST     Загрузка файла
+/data/list-files     GET      Список файлов
+/data/list-folders   GET      Список папок
+/download-file       GET      Скачивание файла
+/data/bulk-download  POST     Массовое скачивание
+```
 
 ## Аутентификация запросов
 

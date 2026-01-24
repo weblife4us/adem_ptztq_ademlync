@@ -18,6 +18,12 @@ alwaysApply: true
 - Keep output minimal and to the point
 - No flame or unnecessary verbosity
 
+## Table Formatting
+- Use monospace code blocks for tables instead of Markdown tables
+- Do NOT use Markdown table syntax (| col1 | col2 |)
+- Use fenced code blocks (```) with fixed-width text alignment
+- Align columns with spaces for readability
+
 ## Git and Version Control
 - Do NOT commit anything without explicit user request
 - Do NOT modify git config

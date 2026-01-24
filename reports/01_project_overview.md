@@ -8,45 +8,47 @@
 
 ```
 ademlync/
-├── ademlync/           # Основное Flutter приложение (UI)
-│   ├── lib/
-│   │   ├── main.dart           # Точка входа
-│   │   ├── chore/              # Bloc, роутинг
-│   │   ├── features/           # Экраны и функционал (66 файлов)
-│   │   └── utils/              # Утилиты, виджеты, контроллеры
-│   ├── assets/                 # Ресурсы (SVG, PNG)
-│   ├── android/                # Android платформа
-│   └── ios/                    # iOS платформа
-│
-├── packages/
-│   ├── ademlync_device/        # Пакет коммуникации с устройствами
-│   │   ├── controllers/
-│   │   │   ├── adem_manager.dart              # Главный менеджер устройства
-│   │   │   ├── bluetooth_connection_manager.dart  # BLE соединение
-│   │   │   ├── communication_manager.dart     # Протокол обмена
-│   │   │   └── command_builder.dart           # Построитель команд
-│   │   ├── models/             # Модели данных устройства
-│   │   └── utils/              # Константы, парсеры, enum'ы
-│   │
-│   └── ademlync_cloud/         # Пакет облачной интеграции
-│       ├── controllers/
-│       │   ├── cloud_manager.dart    # Менеджер облака
-│       │   ├── file_manager.dart     # Работа с файлами
-│       │   └── user_manager.dart     # Управление пользователями
-│       └── utils/
-│           └── api_helper.dart       # HTTP запросы к AWS
++-- ademlync/               # Основное Flutter приложение (UI)
+|   +-- lib/
+|   |   +-- main.dart           # Точка входа
+|   |   +-- chore/              # Bloc, роутинг
+|   |   +-- features/           # Экраны и функционал (66 файлов)
+|   |   +-- utils/              # Утилиты, виджеты, контроллеры
+|   +-- assets/                 # Ресурсы (SVG, PNG)
+|   +-- android/                # Android платформа
+|   +-- ios/                    # iOS платформа
+|
++-- packages/
+    +-- ademlync_device/        # Пакет коммуникации с устройствами
+    |   +-- controllers/
+    |   |   +-- adem_manager.dart              # Главный менеджер
+    |   |   +-- bluetooth_connection_manager.dart  # BLE соединение
+    |   |   +-- communication_manager.dart     # Протокол обмена
+    |   |   +-- command_builder.dart           # Построитель команд
+    |   +-- models/             # Модели данных устройства
+    |   +-- utils/              # Константы, парсеры, enum
+    |
+    +-- ademlync_cloud/         # Пакет облачной интеграции
+        +-- controllers/
+        |   +-- cloud_manager.dart    # Менеджер облака
+        |   +-- file_manager.dart     # Работа с файлами
+        |   +-- user_manager.dart     # Управление пользователями
+        +-- utils/
+            +-- api_helper.dart       # HTTP запросы к AWS
 ```
 
 ## Основные технологии
 
-| Компонент | Технология |
-|-----------|------------|
-| UI Framework | Flutter/Dart |
-| State Management | BLoC, Provider |
-| Routing | go_router |
-| BLE | flutter_blue_plus |
-| HTTP Client | Dio |
-| Cloud Backend | AWS API Gateway |
+```
+Компонент           Технология
+------------------------------------------
+UI Framework        Flutter/Dart
+State Management    BLoC, Provider
+Routing             go_router
+BLE                 flutter_blue_plus
+HTTP Client         Dio
+Cloud Backend       AWS API Gateway
+```
 
 ## Типы устройств AdEM
 
