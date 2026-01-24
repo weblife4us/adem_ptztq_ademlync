@@ -1,0 +1,10 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    prefer_relative_imports: true
+    prefer_const_constructors: true
+    prefer_final_fields: true
+    prefer_const_literals_to_create_immutables: true
+    curly_braces_in_flow_control_structures: true

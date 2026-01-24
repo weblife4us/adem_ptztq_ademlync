@@ -1,0 +1,104 @@
+# Cursor Ignore File
+# Files and directories to exclude from indexing and cloud transmission
+
+# Build outputs
+build/
+.dart_tool/
+*.g.dart
+*.gen.dart
+*.freezed.dart
+
+# IDE and editor files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Dependencies (large folders)
+**/node_modules/
+**/.pub-cache/
+**/.pub/
+
+# Generated Flutter files
+**/generated_plugin_registrant.dart
+**/flutter_export_environment.sh
+**/Flutter.framework/
+**/App.framework/
+**/Pods/
+
+# Android build artifacts
+**/android/.gradle/
+**/android/app/.cxx/
+**/android/captures/
+*.jks
+*.keystore
+
+# iOS build artifacts
+**/ios/DerivedData/
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/ephemeral/
+**/*.xcuserdata/
+
+# Windows build artifacts
+**/windows/flutter/generated_*
+
+# Linux build artifacts
+**/linux/flutter/generated_*
+
+# macOS build artifacts
+**/macos/Flutter/ephemeral/
+
+# Test coverage
+coverage/
+*.lcov
+
+# Log files
+*.log
+logs/
+
+# Binary and archive files
+*.exe
+*.dll
+*.so
+*.dylib
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# Assets that don't need indexing
+**/assets/fonts/
+**/fonts/*.otf
+**/fonts/*.ttf

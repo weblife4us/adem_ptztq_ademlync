@@ -1,0 +1,55 @@
+---
+description: Project rules for AdEMLync development
+globs: 
+alwaysApply: true
+---
+
+# AdEMLync Project Rules
+
+## Communication Language
+- Communicate with user in Russian language
+- All code comments, variable names, menu items, and messages must be in English
+- Reports go to `reports/` folder with sequential numbering (01, 02, 03, etc.)
+
+## Output Formatting
+- Do NOT use ANSI escape codes
+- Do NOT use Unicode symbols for decoration
+- Do NOT use colored ANSI codes
+- Keep output minimal and to the point
+- No flame or unnecessary verbosity
+
+## Git and Version Control
+- Do NOT commit anything without explicit user request
+- Do NOT modify git config
+- Always verify changes before commit
+
+## Reports and Documentation
+- Keep all existing reports
+- Do NOT create new reports without user request
+- When creating reports, place them in `reports/` folder
+- Use sequential numbering: 01_, 02_, 03_, etc.
+- Reports content should be in Russian
+
+## Code Standards
+- Follow Dart/Flutter best practices
+- Use English for all identifiers and comments
+- Maintain existing code style
+- Test changes before suggesting them
+
+## Project Structure
+- Main app: `ademlync/` - Flutter mobile application
+- Device package: `packages/ademlync_device/` - BLE communication with AdEM devices
+- Cloud package: `packages/ademlync_cloud/` - AWS cloud integration
+
+## Technology Stack
+- Flutter/Dart for mobile development
+- BLE (Bluetooth Low Energy) for device communication
+- AWS API Gateway for cloud services
+- AdEM Key and Air Console dongles for BLE bridge
+
+## File Types in Project
+- Dart files (*.dart) - main codebase
+- C files (*.c, *.h) - potential test cases
+- Python files (*.py) - scripts and tests
+- PowerShell files (*.ps1) - Windows automation
+- Batch files (*.bat, *.cmd) - Windows scripts
