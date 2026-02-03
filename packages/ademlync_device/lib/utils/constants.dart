@@ -355,6 +355,29 @@ const Set<int> unavailableParamsAdemPtzr = {
   996,
 };
 
+// Unavailable params -- AdEM PTZq (PTZ with DP monitoring - less restrictions)
+// PTZq has access to DP params (853-877) unlike regular PTZ
+const Set<int> unavailableParamsAdemPtzq = {
+  829,
+  833,
+  835,
+  837,
+  838,
+  839,
+  842,
+  843,
+  844,
+  // Note: 853-877 are AVAILABLE for PTZq (DP monitoring)
+  980,
+  981,
+  988,
+  989,
+  990,
+  991,
+  992,
+  996,
+};
+
 // Available custom display params -- AdEM s
 Set<int> customDisplayParamsAdemS(String firmwareVersion) => {
   0,
@@ -686,6 +709,79 @@ const Set<int> customDisplayParamsAdemPtzr = {
   986,
 };
 
+// Available custom display params -- AdEM PTZq (PTZ + TQ DP params)
+const Set<int> customDisplayParamsAdemPtzq = {
+  // PTZ base params
+  0,
+  2,
+  8,
+  13,
+  14,
+  26,
+  34,
+  43,
+  44,
+  45,
+  48,
+  53,
+  54,
+  55,
+  59,
+  61,
+  113,
+  115,
+  116,
+  47,
+  122,
+  137,
+  138,
+  183,
+  184,
+  198,
+  62,
+  201,
+  203,
+  204,
+  209,
+  223,
+  224,
+  255,
+  274,
+  275,
+  767,
+  768,
+  769,
+  772,
+  773,
+  774,
+  775,
+  776,
+  777,
+  780,
+  781,
+  782,
+  783,
+  784,
+  795,
+  806,
+  811,
+  816,
+  817,
+  828,
+  834,
+  840,
+  986,
+  995,
+  // TQ DP monitoring params
+  853,  // DP Sensor Range
+  854,  // DP Sensor Serial
+  855,  // Line Gauge Pressure
+  856,  // Max Allowable DP
+  857,  // Min Allowable Flow %
+  858,  // Differential Pressure
+  860,  // Q Monitor Function (DP Enable)
+};
+
 // Seal protected params
 const Set<int> sealProtectedParams = {
   0,
@@ -750,6 +846,9 @@ const dailyLogParamsAdemPtz = DailyLogParams(true, true, false, false, false);
 
 // Available daily log params -- AdEM ptz-r
 const dailyLogParamsAdemPtzr = DailyLogParams(true, true, false, false, false);
+
+// Available daily log params -- AdEM PTZq (PTZ + TQ DP logs)
+const dailyLogParamsAdemPtzq = DailyLogParams(true, true, true, true, true);
 
 // Available interval log params -- AdEM s
 const intervalLogParamsAdemS = IntervalLogParams(
@@ -883,5 +982,26 @@ const intervalLogParamsAdemPtzr = IntervalLogParams(
   true,
   true,
   true,
+  IntervalLogAlarmParams(true, true, true, true, true, true, true, true),
+);
+
+// Available interval log params -- AdEM PTZq (PTZ + TQ DP logs)
+const intervalLogParamsAdemPtzq = IntervalLogParams(
+  true,  // hasPress
+  true,  // hasTemp
+  true,  // hasMinPress
+  true,  // hasMaxPress
+  true,  // hasMinTemp
+  true,  // hasMaxTemp
+  true,  // hasMinFlow
+  true,  // hasMaxFlow
+  true,  // hasAvgPress
+  true,  // hasAvgTemp
+  true,  // hasAvgFlow
+  true,  // hasAvgFactor
+  true,  // hasAvgBatt
+  true,  // hasCorVol
+  true,  // hasUncVol
+  true,  // hasFlowDp
   IntervalLogAlarmParams(true, true, true, true, true, true, true, true),
 );

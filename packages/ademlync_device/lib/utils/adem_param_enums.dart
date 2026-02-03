@@ -1062,6 +1062,7 @@ enum AdemType {
   universalT(3, 'MT', 1, 3),
   ademTq(3, '(M|R)Q', 1, 7),
   ademPtz(2, '[NAGS](M|R)', 2, 4),
+  ademPtzq(2, '[NAGS](M|R)Q', 1, 8),  // PTZq: PTZ + TQ (DP monitoring)
   ademPtzR(2, '[NAGS](M|R)', 2, 6),
   ademR(2, '[NAGS](M|R)', 2, 6),
   ademMi(2, '[NAGS](M|R)', 2, 6);
@@ -1086,6 +1087,7 @@ enum AdemType {
         'ADEM-T' || 'ADEM+T' => AdemType.ademT,
         'ADEM-TQ' || 'ADEM+TQ' => AdemType.ademTq,
         'ADEM-PTZ' || 'ADEM+PTZ' => AdemType.ademPtz,
+        'ADEM-PTZQ' || 'ADEM+PTZQ' => AdemType.ademPtzq,  // PTZq: PTZ + TQ
         'ADEM-R' || 'ADEM+R' => AdemType.ademR,
         'ADEM-MI' || 'ADEM+MI' => AdemType.ademMi,
         null => throw const AdemCommError(
@@ -1125,6 +1127,7 @@ enum AdemType {
     AdemType.ademS || AdemType.ademT || AdemType.ademTq => 'NA',
     AdemType.universalT ||
     AdemType.ademPtz ||
+    AdemType.ademPtzq ||
     AdemType.ademPtzR ||
     AdemType.ademR ||
     AdemType.ademMi => '0',
@@ -1135,12 +1138,13 @@ enum AdemType {
   bool get isUniversalT => this == AdemType.universalT;
   bool get isAdemTq => this == AdemType.ademTq;
   bool get isAdemPtz => this == AdemType.ademPtz;
+  bool get isAdemPtzq => this == AdemType.ademPtzq;  // PTZq: PTZ + TQ
   bool get isAdemPtzR => this == AdemType.ademPtzR;
   bool get isAdemR => this == AdemType.ademR;
   bool get isAdemMi => this == AdemType.ademMi;
 
   bool get isMeterSizeSupported =>
-      isAdemS || isAdemT || isUniversalT || isAdemTq || isAdemPtz;
+      isAdemS || isAdemT || isUniversalT || isAdemTq || isAdemPtz || isAdemPtzq;
 
   /// Determines if Super Access Code is supported based on firmware version and AdEM type.
   ///
@@ -1162,6 +1166,7 @@ enum AdemType {
       ),
       AdemType.universalT ||
       AdemType.ademTq ||
+      AdemType.ademPtzq ||
       AdemType.ademPtzR ||
       AdemType.ademR ||
       AdemType.ademMi => true,
@@ -1197,6 +1202,7 @@ enum AdemType {
       ),
       AdemType.universalT ||
       AdemType.ademTq ||
+      AdemType.ademPtzq ||
       AdemType.ademPtzR ||
       AdemType.ademR ||
       AdemType.ademMi => true,

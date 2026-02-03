@@ -80,6 +80,13 @@ class _CalibrationPageState extends State<CalibrationPage> {
         CalibrationItem.dp1Point,
         CalibrationItem.dp3Point,
       ],
+      AdemType.ademPtzq => [  // PTZq: PTZ calibration + DP calibration
+        CalibrationItem.temp1Point,
+        CalibrationItem.press1Point,
+        CalibrationItem.press3Point,
+        CalibrationItem.dp1Point,
+        CalibrationItem.dp3Point,
+      ],
       AdemType.ademPtz ||
       AdemType.ademPtzR ||
       AdemType.ademR ||

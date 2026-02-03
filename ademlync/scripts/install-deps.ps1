@@ -6,15 +6,39 @@ param(
     [switch]$Clean
 )
 
-# Add Flutter to PATH
-$env:Path = "C:\flutter\bin;$env:Path"
+# Function to find Flutter installation
+function Find-Flutter {
+    $flutterCmd = Get-Command flutter -ErrorAction SilentlyContinue
+    if ($flutterCmd) { return Split-Path $flutterCmd.Source }
+    
+    $possiblePaths = @(
+        "C:\flutter\bin", "C:\src\flutter\bin", "$env:USERPROFILE\flutter\bin",
+        "$env:LOCALAPPDATA\flutter\bin", "D:\flutter\bin", "C:\dev\flutter\bin"
+    )
+    foreach ($path in $possiblePaths) {
+        if (Test-Path "$path\flutter.bat") { return $path }
+    }
+    return $null
+}
+
+$FlutterPath = Find-Flutter
+if (-not $FlutterPath) {
+    Write-Host "[ERROR] Flutter not found!" -ForegroundColor Red
+    exit 1
+}
+if ($env:Path -notlike "*$FlutterPath*") {
+    $env:Path = "$FlutterPath;$env:Path"
+}
 
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "Installing Dependencies" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
-$rootDir = "d:\cursor\ademlync"
+# Determine root directory (parent of scripts folder, then parent of ademlync)
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$projectDir = Split-Path -Parent $scriptDir
+$rootDir = Split-Path -Parent $projectDir
 
 # Clean if requested
 if ($Clean) {

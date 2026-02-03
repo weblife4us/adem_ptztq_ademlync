@@ -8,7 +8,7 @@ extension ParamDecimal on Param {
     final tempUnit = adem.tempUnit;
     final volumeType = adem.volumeType;
     final flowRateType = adem.flowRateType;
-    final isTq = adem.type == AdemType.ademTq;
+    final isTq = adem.type == AdemType.ademTq || adem.type == AdemType.ademPtzq;
 
     return switch (this) {
           // MARK: Battery

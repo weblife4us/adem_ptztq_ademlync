@@ -9,10 +9,33 @@ param(
     [switch]$Open
 )
 
-# Add Flutter to PATH
-$env:Path = "C:\flutter\bin;$env:Path"
+# Function to find Flutter installation
+function Find-Flutter {
+    $flutterCmd = Get-Command flutter -ErrorAction SilentlyContinue
+    if ($flutterCmd) { return Split-Path $flutterCmd.Source }
+    
+    $possiblePaths = @(
+        "C:\flutter\bin", "C:\src\flutter\bin", "$env:USERPROFILE\flutter\bin",
+        "$env:LOCALAPPDATA\flutter\bin", "D:\flutter\bin", "C:\dev\flutter\bin"
+    )
+    foreach ($path in $possiblePaths) {
+        if (Test-Path "$path\flutter.bat") { return $path }
+    }
+    return $null
+}
 
-Set-Location "d:\cursor\ademlync\ademlync"
+$FlutterPath = Find-Flutter
+if (-not $FlutterPath) {
+    Write-Host "[ERROR] Flutter not found!" -ForegroundColor Red
+    exit 1
+}
+if ($env:Path -notlike "*$FlutterPath*") {
+    $env:Path = "$FlutterPath;$env:Path"
+}
+
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$projectDir = Split-Path -Parent $scriptDir
+Set-Location $projectDir
 
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "Building Android Package" -ForegroundColor Cyan
@@ -53,7 +76,7 @@ Write-Host "========================================" -ForegroundColor Green
 Write-Host "Build complete!" -ForegroundColor Green
 Write-Host "========================================" -ForegroundColor Green
 
-$outputPath = "d:\cursor\ademlync\ademlync\build\app\outputs"
+$outputPath = "$projectDir\build\app\outputs"
 if ($Bundle) {
     $outputPath += "\bundle"
 } else {

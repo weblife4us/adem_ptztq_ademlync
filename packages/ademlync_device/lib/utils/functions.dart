@@ -655,6 +655,7 @@ Set<int> unavailableParams(AdemType type) {
     AdemType.universalT => unavailableParamsUniversalT,
     AdemType.ademTq => unavailableParamsAdemTq,
     AdemType.ademPtz => unavailableParamsAdemPtz,
+    AdemType.ademPtzq => unavailableParamsAdemPtzq,  // PTZq: PTZ + DP params
     AdemType.ademPtzR ||
     AdemType.ademR ||
     AdemType.ademMi => unavailableParamsAdemPtzr,

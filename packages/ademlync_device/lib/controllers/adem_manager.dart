@@ -862,7 +862,7 @@ class AdemManager {
     DiffPressUnit? differentialPressureUnit;
     LineGaugePressUnit? lineGaugePressureUnit;
 
-    if (type == AdemType.ademTq) {
+    if (type == AdemType.ademTq || type == AdemType.ademPtzq) {
       final measSys = meterSize!.serial.system;
       differentialPressureUnit = measSys.toDiffPressUnit;
       lineGaugePressureUnit = measSys.toLineGaugePressUnit;
@@ -956,8 +956,8 @@ class AdemManager {
       Param.uncOutputPulseVolUnit,
       Param.corOutputPulseVolUnit,
       if (type.isMeterSizeSupported) Param.meterSize,
-      if (type == AdemType.ademTq) Param.differentialPressureUnit,
-      if (type == AdemType.ademTq) Param.lineGaugePressureUnit,
+      if (type == AdemType.ademTq || type == AdemType.ademPtzq) Param.differentialPressureUnit,
+      if (type == AdemType.ademTq || type == AdemType.ademPtzq) Param.lineGaugePressureUnit,
       Param.pushBtnProvingPulsesOpFunc,
       Param.showDot,
     ];

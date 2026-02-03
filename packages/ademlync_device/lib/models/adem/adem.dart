@@ -141,6 +141,7 @@ class Adem extends Unit {
       AdemType.universalT => customDisplayParamsUniversalT(firmwareVersion),
       AdemType.ademTq => customDisplayParamsAdemTq,
       AdemType.ademPtz => customDisplayParamsAdemPtz(firmwareVersion),
+      AdemType.ademPtzq => customDisplayParamsAdemPtzq,  // PTZq: PTZ + TQ (DP)
       AdemType.ademPtzR ||
       AdemType.ademR ||
       AdemType.ademMi => customDisplayParamsAdemPtzr,
@@ -186,6 +187,7 @@ class Adem extends Unit {
     AdemType.universalT => dailyLogParamsUniversalT,
     AdemType.ademTq => dailyLogParamsAdemTq,
     AdemType.ademPtz => dailyLogParamsAdemPtz,
+    AdemType.ademPtzq => dailyLogParamsAdemPtzq,  // PTZq: PTZ + TQ (DP logs)
     AdemType.ademPtzR ||
     AdemType.ademR ||
     AdemType.ademMi => dailyLogParamsAdemPtzr,
@@ -198,6 +200,7 @@ class Adem extends Unit {
     AdemType.universalT => intervalLogParamsUniversalT,
     AdemType.ademTq => intervalLogParamsAdemTq,
     AdemType.ademPtz => intervalLogParamsAdemPtz,
+    AdemType.ademPtzq => intervalLogParamsAdemPtzq,  // PTZq: PTZ + TQ (DP logs)
     AdemType.ademPtzR ||
     AdemType.ademR ||
     AdemType.ademMi => intervalLogParamsAdemPtzr,
@@ -208,11 +211,11 @@ class Adem extends Unit {
   bool get isAdem25 => firmwareVersion.startsWith('E');
 
   /// Returns `true` if the device is pressure-only (`POnly`).
-  /// Applies to `AdEMPtz` or `AdEMPtzR` types where:
+  /// Applies to `AdEMPtz`, `AdEMPtzq` or `AdEMPtzR` types where:
   /// - `pressFactorType` is `live`
   /// - `tempFactorType` is `fixed`
   bool get isPOnly =>
-      (type.isAdemPtz || type.isAdemPtzR || type.isAdemR || type.isAdemMi) &&
+      (type.isAdemPtz || type.isAdemPtzq || type.isAdemPtzR || type.isAdemR || type.isAdemMi) &&
       pressFactorType == FactorType.live &&
       tempFactorType == FactorType.fixed;
 
@@ -227,20 +230,23 @@ class Adem extends Unit {
       pressFactorType == FactorType.fixed &&
       tempFactorType == FactorType.live;
 
-  /// Determines if AdEM-Tq supports FLOWDP and QLOG based on firmware version.
+  /// Determines if AdEM-Tq or AdEM-PTZq supports FLOWDP and QLOG based on firmware version.
   /// - Supported:
   ///   - Firmware starting with 'E' (e.g., E010RQ17 for ADEM-25 and later).
   ///   - Firmware starting with 'D' with suffix ≥ 47 (e.g., D060MQ47, D060MQ57, D060MQ67).
   /// - Not supported:
   ///   - Firmware starting with 'D' with suffix < 47 (e.g., D060MQ37, D060MQ27, D060MQ17).
-  bool get hasTqLog => type.isAdemTq
-      ? meetsMinFirmwareVersion(
-          firmwareVersion,
-          minMajor: 'D',
-          minMinor: 6,
-          minPatch: 4,
-        )
-      : false;
+  /// - PTZq (E01xRQ18) always supports DP logs.
+  bool get hasTqLog => type.isAdemPtzq
+      ? true  // PTZq always supports DP logs
+      : type.isAdemTq
+          ? meetsMinFirmwareVersion(
+              firmwareVersion,
+              minMajor: 'D',
+              minMinor: 6,
+              minPatch: 4,
+            )
+          : false;
 
   /// Determines if AdEM firmware supports warning, excluding specific legacy versions.
   /// Excludes:
@@ -274,6 +280,7 @@ class Adem extends Unit {
             minMajor: 'D',
             minMinor: 6,
           ),
+          AdemType.ademPtzq => true,  // PTZq: E firmware only
           AdemType.ademPtzR || AdemType.ademR || AdemType.ademMi => true,
         };
 
@@ -284,6 +291,7 @@ class Adem extends Unit {
       AdemType.universalT => 'Universal T',
       AdemType.ademTq => 'AdEM Tq',
       AdemType.ademPtz => 'AdEM PTZ',
+      AdemType.ademPtzq => 'AdEM PTZq',  // PTZq: PTZ + TQ (DP monitoring)
       AdemType.ademPtzR => 'AdEM PTZ-r',
       AdemType.ademR => 'AdEM R',
       AdemType.ademMi => 'AdEM Mi',
