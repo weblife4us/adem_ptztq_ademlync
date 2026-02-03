@@ -1143,6 +1143,10 @@ enum AdemType {
   bool get isAdemR => this == AdemType.ademR;
   bool get isAdemMi => this == AdemType.ademMi;
 
+  /// Returns true if this device type has Q Monitor (DP monitoring) functionality.
+  /// Both ademTq and ademPtzq have Q Monitor capabilities.
+  bool get hasQMonitor => isAdemTq || isAdemPtzq;
+
   bool get isMeterSizeSupported =>
       isAdemS || isAdemT || isUniversalT || isAdemTq || isAdemPtz || isAdemPtzq;
 

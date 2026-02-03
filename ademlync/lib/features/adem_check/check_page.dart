@@ -51,7 +51,7 @@ class _CheckPageState extends State<CheckPage> {
             if (isAdemReady &&
                 _adem.measureCache.superXAlgorithm == SuperXAlgo.aga8)
               CheckItem.aga8,
-            if (isAdemReady && _adem.type.isAdemTq) CheckItem.qMonitor,
+            if (isAdemReady && _adem.type.hasQMonitor) CheckItem.qMonitor,
           ];
           final items2 = [CheckItem.checkReportExport];
 

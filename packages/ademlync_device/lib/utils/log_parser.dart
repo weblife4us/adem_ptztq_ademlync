@@ -465,6 +465,7 @@ class LogParser {
         type.isAdemS ? null : bits[7],
         type.isAdemTq ||
                 type.isAdemPtz ||
+                type.isAdemPtzq ||
                 type.isAdemPtzR ||
                 type.isAdemR ||
                 type.isAdemMi
@@ -472,6 +473,7 @@ class LogParser {
             : null,
         type.isAdemTq ||
                 type.isAdemPtz ||
+                type.isAdemPtzq ||
                 type.isAdemPtzR ||
                 type.isAdemR ||
                 type.isAdemMi
@@ -479,7 +481,7 @@ class LogParser {
             : null,
         bits[13],
         type.isAdemS ? null : bits[14],
-        type.isAdemPtz || type.isAdemTq ? bits[15] : null,
+        type.isAdemPtz || type.isAdemTq || type.isAdemPtzq ? bits[15] : null,
       );
     } catch (e) {
       return null;

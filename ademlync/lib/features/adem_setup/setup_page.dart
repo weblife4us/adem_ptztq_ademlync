@@ -67,7 +67,7 @@ class _SetupPageState extends State<SetupPage> {
                 AppDelegate().adem.measureCache.superXAlgorithm ==
                     SuperXAlgo.aga8)
               SetupItem.aga8,
-            if (isAdemReady && AppDelegate().adem.type == AdemType.ademTq)
+            if (isAdemReady && AppDelegate().adem.type.hasQMonitor)
               SetupItem.qMonitor,
           ];
 
