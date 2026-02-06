@@ -50,9 +50,9 @@ class SLGDebugBloc extends Bloc<SLGDebugEvent, SLGDebugState>
           final r1 = await manager.read(991); // DataBuffer1 Result
           final r2 = await manager.read(992); // ADC raw
 
-          final raw0 = DataParser.asInt(r0.body) ?? 0;
-          final raw1 = DataParser.asInt(r1.body) ?? 0;
-          final rawAdc = DataParser.asInt(r2.body) ?? 0;
+          final raw0 = DataParser.asInt(r0?.body) ?? 0;
+          final raw1 = DataParser.asInt(r1?.body) ?? 0;
+          final rawAdc = DataParser.asInt(r2?.body) ?? 0;
 
           emit(SLGDataFetched(
             SLGData(raw0, raw1, rawAdc),

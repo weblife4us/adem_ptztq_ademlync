@@ -44,7 +44,7 @@ class _SLGDebugPageState extends State<SLGDebugPage> {
           isCommunicating: _bloc.isCommunicating,
           cancelCommunication: () => _bloc.cancelCommunication(),
           child: Scaffold(
-            appBar: SAppBar(context, text: 'SLG47011 Debug'),
+            appBar: const SAppBar(text: 'SLG47011 Debug'),
             body: SmartBodyLayout(
               child: isLoading && _data == null
                   ? const SLoading()
