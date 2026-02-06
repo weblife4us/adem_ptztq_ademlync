@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../chore/main_bloc.dart';
 import '../../chore/managers/app_mode_manager.dart';
 import '../../utils/app_delegate.dart';
+import '../../utils/debug_config.dart';
 import '../../utils/custom_color_scheme.dart';
 import '../../utils/functions.dart';
 import '../../utils/widgets/s_image.dart';
@@ -113,6 +114,12 @@ class _SMenuState extends State<SMenu> {
                             icon: 'setup',
                             text: 'Testing Tools',
                             onPressed: () => _navTo('/menu/btCmdTesting'),
+                          ),
+                        if (kSLGDebugEnabled)
+                          _MenuItem(
+                            icon: 'setup',
+                            text: 'SLG47011 Debug',
+                            onPressed: () => _navTo('/menu/slgDebug'),
                           ),
                         _MenuItem(
                           icon: 'license',

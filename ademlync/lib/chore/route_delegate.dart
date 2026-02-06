@@ -77,6 +77,9 @@ import '../features/cloud_service/upload_file_page.dart';
 import '../features/cloud_service/upload_file_page_bloc.dart';
 import '../features/dashboard.dart';
 import '../features/debug/testing_page.dart';
+import '../features/slg_debug/slg_debug_page.dart';
+import '../features/slg_debug/slg_debug_page_bloc.dart';
+import '../utils/debug_config.dart';
 import '../features/dp_calculator/dp_calculator_bloc.dart';
 import '../features/dp_calculator/dp_calculator_page.dart';
 import '../features/faq_page.dart';
@@ -231,6 +234,16 @@ final router = GoRouter(
       parentNavigatorKey: mainNavKey,
       builder: (_, _) => const TestingPage(),
     ),
+
+    if (kSLGDebugEnabled)
+      GoRoute(
+        path: '/menu/slgDebug',
+        parentNavigatorKey: mainNavKey,
+        builder: (_, _) => BlocProvider(
+          create: (_) => SLGDebugBloc(),
+          child: const SLGDebugPage(),
+        ),
+      ),
 
     GoRoute(
       path: '/menu/licenses',
