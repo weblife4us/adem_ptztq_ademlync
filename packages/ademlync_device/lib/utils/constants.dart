@@ -368,13 +368,11 @@ const Set<int> unavailableParamsAdemPtzq = {
   843,
   844,
   // Note: 853-877 are AVAILABLE for PTZq (DP monitoring)
+  // Note: 990-993 are AVAILABLE for PTZq (SLG47011 debug readback)
   980,
   981,
   988,
   989,
-  990,
-  991,
-  992,
   996,
 };
 

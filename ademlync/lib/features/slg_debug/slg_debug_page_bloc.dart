@@ -41,14 +41,17 @@ class SLGDebugBloc extends Bloc<SLGDebugEvent, SLGDebugState>
         }
       });
 
+      // Enable SLG debug mode: pause normal firmware SLG47011 reads
+      await manager.write(993, '10000000');
+
       do {
         if (isCancelCommunication || completer.isCompleted) break;
 
         try {
           // Read 3 SLG47011 debug values (AudAddr 990, 991, 992)
-          final r0 = await manager.read(990); // DataBuffer0 Result
-          final r1 = await manager.read(991); // DataBuffer1 Result
-          final r2 = await manager.read(992); // ADC raw
+          final r0 = await manager.read(990, checking: false);
+          final r1 = await manager.read(991, checking: false);
+          final r2 = await manager.read(992, checking: false);
 
           final raw0 = DataParser.asInt(r0?.body) ?? 0;
           final raw1 = DataParser.asInt(r1?.body) ?? 0;
@@ -80,6 +83,10 @@ class SLGDebugBloc extends Bloc<SLGDebugEvent, SLGDebugState>
     } finally {
       try {
         if (isConnectedToAdem) {
+          // Disable SLG debug mode: resume normal firmware SLG47011 reads
+          try {
+            await manager.write(993, '00000000');
+          } catch (_) {}
           await manager.disconnect(timeout: disconnectLogTimeoutInMs);
         }
       } catch (_) {}
