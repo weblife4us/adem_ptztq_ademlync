@@ -33,6 +33,12 @@ class _SLGDebugPageState extends State<SLGDebugPage> {
   }
 
   @override
+  void dispose() {
+    _bloc.cancelCommunication();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer(
       bloc: _bloc,

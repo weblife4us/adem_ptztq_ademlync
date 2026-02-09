@@ -41,9 +41,6 @@ class SLGDebugBloc extends Bloc<SLGDebugEvent, SLGDebugState>
         }
       });
 
-      // Enable SLG debug mode: pause normal firmware SLG47011 reads
-      await manager.write(993, '10000000');
-
       do {
         if (isCancelCommunication || completer.isCompleted) break;
 
@@ -83,10 +80,6 @@ class SLGDebugBloc extends Bloc<SLGDebugEvent, SLGDebugState>
     } finally {
       try {
         if (isConnectedToAdem) {
-          // Disable SLG debug mode: resume normal firmware SLG47011 reads
-          try {
-            await manager.write(993, '00000000');
-          } catch (_) {}
           await manager.disconnect(timeout: disconnectLogTimeoutInMs);
         }
       } catch (_) {}
