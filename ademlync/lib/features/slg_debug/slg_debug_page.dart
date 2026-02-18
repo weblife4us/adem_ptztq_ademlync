@@ -86,30 +86,43 @@ class _SLGDebugPageState extends State<SLGDebugPage> {
           ),
           const Gap(16.0),
 
-          // DataBuffer0 - PTZ Absolute Pressure
           _buildBufferCard(
-            'DataBuffer0 (PTZ Absolute Pressure)',
+            'Pressure1 PTZ (CH0) -- 16-bit oversampled',
             _data!.buffer0Raw,
             _data!.buffer0_14bit,
             _data!.buffer0_12bit,
           ),
           const Gap(16.0),
 
-          // DataBuffer1 - TQ Differential Pressure
           _buildBufferCard(
-            'DataBuffer1 (TQ Differential Pressure)',
+            'Pressure2 TQ (CH1) -- 16-bit oversampled',
             _data!.buffer1Raw,
             _data!.buffer1_14bit,
             _data!.buffer1_12bit,
           ),
           const Gap(16.0),
 
-          // ADC Direct
           _buildBufferCard(
-            'ADC Direct Value',
+            'ADC Direct Output',
             _data!.adcRaw,
             _data!.adc_14bit,
             _data!.adc_12bit,
+          ),
+          const Gap(16.0),
+
+          _buildBufferCard(
+            'RTD Temperature (CH2) -- 14-bit one-shot',
+            _data!.rtdRaw,
+            _data!.rtd_14bit,
+            _data!.rtd_12bit,
+          ),
+          const Gap(16.0),
+
+          _buildBufferCard(
+            'Battery Voltage (CH3) -- 14-bit one-shot',
+            _data!.batteryRaw,
+            _data!.battery_14bit,
+            _data!.battery_12bit,
           ),
         ],
       ),
